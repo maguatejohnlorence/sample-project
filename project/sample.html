@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="sample.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Coffee Shop</title>
+</head>
+<body>
+  <div class="container">
+    <!-- PARA SA HEADER -->
+      <div class="header">
+          <div class="left-side">
+              <img src="coffee.jpeg" alt="Hacer Café logo" />
+              <h1>h𝐚𝐜𝐞𝐫 𝐜𝐚𝐟é</h1>
+          </div>
+
+          <div class="logout">
+             <button id="logout-btn">Log out</button>
+          </div>
+      </div>
+      
+    <div class="menu">
+        <h3>Menu</h3>
+        <button class="menu-item" data-category="snacks">Snacks</button>
+        <button class="menu-item" data-category="dessert">Dessert</button>
+        <button class="menu-item" data-category="coffee">Coffee</button>
+    </div>
+
+    <div class="main-menu">
+        <div class="search-bar">
+            <input type="text" class="search" placeholder="Search...">
+        </div>
+
+        <!--  PARA SA SNACKS SECTION -->
+        <section id="snacks" class="category">
+            <div class="potatochip">
+                <img src="potato_chips.jpg" alt="potato" />
+                <h4>POTATO CHIPS</h4>
+                <h5>₱50 per plate</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+            <div class="frenchfries">
+                <img src="frenchfries.jpg" alt="fries" />
+                <h4>FRENCH FRIES</h4>
+                <h5>₱30 per cup</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+            <div class="tortillas">
+                <img src="tortillas.jpg" alt="tortillas" />
+                <h4>NACHOS</h4>
+                <h5>₱55 per plate</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARA SA DESSERT SECTION -->
+        <section id="dessert" class="category">
+            <div class="graham">
+                <img src="graham.jpg" alt="graham" />
+                <h4>MANGO GRAHAM</h4>
+                <h5>₱25 per slice</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+            <div class="choco_cake">
+                <img src="choco-cake.jpg" alt="choco" />
+                <h4>CHOCOLATE CAKE</h4>
+                <h5>₱70 per slice</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+            <div class="strawberry">
+                <img src="strawberry-cupcake.jpg" alt="strawberry" />
+                <h4>STRAWBERRY CUPCAKE</h4>
+                <h5>₱20 per piece</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- PARA SA COFFEE SECTION -->
+        <section id="coffee" class="category">
+            <div class="espresso">
+                <img src="espresso.jpg" alt="espresso" />
+                <h4>ESPRESSO</h4>
+                <h5>₱130 per cup</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+            <div class="cappucino">
+                <img src="cappucino.jpg" alt="cappucino" />
+                <h4>CAPPUCINO</h4>
+                <h5>₱120 per cup</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+            <div class="latte">
+                <img src="latte.jpg" alt="latte" />
+                <h4>COFFEE LATTE</h4>
+                <h5>₱140 per cup</h5>
+                <div class="button-group">
+                    <button class="sub">-</button>
+                    <button class="add">+</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PARA SA ITEMS TABLE -->
+    <div class="items">
+        <table>
+            <thead>
+                <tr>
+                    <th>Items</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="order-body"></tbody>
+        </table>
+        <div class="summary-footer">
+            <p>Total Price: ₱<span id="total-price">0.00</span></p>
+            <label>
+                Customer Money: ₱
+                <input type="number" id="customer-money" placeholder="Enter amount" />
+            </label>
+            <p>Change: ₱<span id="change">0.00</span></p>
+        </div>
+    </div>
+
+    <!-- PROCESSING BUTTONS -->
+    <div class="process">
+            <div class="button-group">
+                 <button class="order" id="dine-in">DINE IN</button>
+                 <button class="order" id="take-out">TAKE OUT</button>
+            </div>
+                 <button class="order-process" id="process-order">PROCESS ORDER</button>
+            <p id="order-type-display" style="margin-top: 10px; font-weight: bold;"></p>
+    </div>
+ </div>
+
+<!--BUONG SCRIPT KASAMA MGA BUTTON-->
+<script>
+    const buttons = document.querySelectorAll('.menu-item');
+    const categories = document.querySelectorAll('.category');
+    const orderBody = document.getElementById('order-body');
+    const totalDisplay = document.getElementById('total-price');
+    const customerMoneyInput = document.getElementById('customer-money');
+    const changeDisplay = document.getElementById('change');
+    const orderTypeDisplay = document.getElementById('order-type-display');
+
+    const dineInBtn = document.getElementById('dine-in');
+    const takeOutBtn = document.getElementById('take-out');
+    const processBtn = document.getElementById('process-order');
+
+    const logoutBtn = document.getElementById('logout-btn'); // 🔴 NEW
+
+    let cart = {};
+    let orderType = "";
+
+    // PARA SA MENU TOGGLE
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selected = button.getAttribute('data-category');
+            categories.forEach(category => {
+                category.classList.remove('active');
+                if (category.id === selected) category.classList.add('active');
+            });
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const firstCategory = document.querySelector('.category');
+        if (firstCategory) firstCategory.classList.add('active');
+    });
+
+    document.querySelectorAll('.add, .sub').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const itemDiv = e.target.closest('div');
+            const title = itemDiv.parentElement.querySelector('h4').innerText;
+            const priceText = itemDiv.parentElement.querySelector('h5').innerText;
+            const price = parseFloat(priceText.replace(/[^\d.]/g, ''));
+
+            if (!(title in cart)) cart[title] = { quantity: 0, price };
+
+            if (e.target.classList.contains('add')) {
+                cart[title].quantity++;
+            } else if (cart[title].quantity > 0) {
+                cart[title].quantity--;
+            }
+
+            if (cart[title].quantity === 0) delete cart[title];
+            updateOrderTable();
+        });
+    });
+
+    function updateOrderTable() {
+        orderBody.innerHTML = '';
+        let total = 0;
+
+        for (let item in cart) {
+            const qty = cart[item].quantity;
+            const price = cart[item].price * qty;
+            total += price;
+
+            const row = `<tr>
+                <td>${item}</td>
+                <td>${qty}</td>
+                <td>₱${price.toFixed(2)}</td>
+            </tr>`;
+            orderBody.innerHTML += row;
+        }
+
+        totalDisplay.textContent = total.toFixed(2);
+        updateChange();
+    }
+
+    function updateChange() {
+        const total = parseFloat(totalDisplay.textContent);
+        const customerMoney = parseFloat(customerMoneyInput.value) || 0;
+        const change = customerMoney - total;
+        changeDisplay.textContent = change >= 0 ? change.toFixed(2) : "0.00";
+    }
+
+    customerMoneyInput.addEventListener('input', updateChange);
+
+    dineInBtn.addEventListener('click', () => {
+        orderType = "DINE IN";
+        orderTypeDisplay.textContent = `Order Type: ${orderType}`;
+    });
+
+    takeOutBtn.addEventListener('click', () => {
+        orderType = "TAKE OUT";
+        orderTypeDisplay.textContent = `Order Type: ${orderType}`;
+    });
+
+    processBtn.addEventListener('click', () => {
+        if (!orderType) {
+            alert("Please select DINE IN or TAKE OUT.");
+            return;
+        }
+        if (Object.keys(cart).length === 0) {
+            alert("No items ordered.");
+            return;
+        }
+
+        const total = parseFloat(totalDisplay.textContent);
+        const money = parseFloat(customerMoneyInput.value);
+        if (money < total || isNaN(money)) {
+            alert("Customer money is insufficient or missing.");
+            return;
+        }
+
+        alert(`Order Processed!\nType: ${orderType}\nTotal: ₱${total.toFixed(2)}\nChange: ₱${(money - total).toFixed(2)}`);
+        cart = {};
+        orderType = "";
+        orderTypeDisplay.textContent = "";
+        customerMoneyInput.value = "";
+        updateOrderTable();
+    });
+
+    // PARA SA LOGOUT
+    logoutBtn.addEventListener('click', () => {    
+        window.location.href = 'loginPage.php'; 
+    });
+</script>
+</body>
+</html>

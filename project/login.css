@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF2D7;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+#coffee {
+  width: 100px;     
+  height: 100px;
+  border-radius: 50%; 
+  border: solid brown 2px;
+  margin-left: 120px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+  .logIn,.adding,.recordCustomer,.sales,.recordStaff{
+    max-width: 350px;
+    width: 90%;
+    background-color: white;
+    padding: 30px 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: monospace text;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 1px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  #log {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #F8C794;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #log:hover {
+    background-color: #388E3C;
+  }
+  
+  .form-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .form-link a {
+    color: #F8C794;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
+  
+  .form-link a:hover {
+    color: #F8C794;
+    text-decoration: underline;
+  }
+
+ .center-link {
+  text-align: center;
+  margin-top: 2px; 
+}
